@@ -1,34 +1,44 @@
 # JAX Transformer from Scratch
 
-这是一个使用 JAX 和 Flax 库从零开始实现的 Transformer 模型。该项目旨在提供一个清晰、完整的代码骨架，用于理解和构建序列到序列（Seq2Seq）任务的 Transformer 架构，例如机器翻译。
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-该实现包含完整的编码器-解码器结构，以及所有核心组件，如多头注意力、位置编码和前馈网络。
+This project is a **from-scratch implementation of the Transformer model** using the **JAX** and **Flax** libraries. It is designed to provide a clear, complete code skeleton for understanding and building the **Sequence-to-Sequence (Seq2Seq)** Transformer architecture, typically used for tasks like machine translation.
 
-## 主要特性
+The implementation includes the full **Encoder-Decoder structure** and all core components, such as **Multi-Head Attention**, **Positional Encoding**, and the **Feed-Forward Network**.
 
-- **完整的 Transformer 架构**：包含一个编码器和一个解码器，适用于序列到序列任务。
-- **模块化设计**：所有核心组件（`MultiHeadAttention`、`EncoderBlock`、`DecoderBlock` 等）都被封装为独立的 Flax `nn.Module`，易于理解和扩展。
-- **训练流程骨架**：包含一个使用 **Optax** 优化器和 `flax.training.TrainState` 进行训练的示例循环，展示了如何在 JAX 的函数式范式下管理模型状态。
-- **JAX 原生实现**：充分利用 JAX 的核心功能，如 **JIT 编译** (`jax.jit`)，以实现高性能计算。
+---
 
-## 项目结构
+## ✨ Key Features
+
+- **Complete Transformer Architecture**: Includes both an **Encoder** and a **Decoder**, suitable for Sequence-to-Sequence tasks.
+- **Modular Design**: All core components (`MultiHeadAttention`, `EncoderBlock`, `DecoderBlock`, etc.) are encapsulated as independent **Flax `nn.Module`s**, making the code easy to understand and extend.
+- **Training Loop Skeleton**: Contains an example training loop using the **Optax** optimizer and **`flax.training.TrainState`**, demonstrating state management within JAX's functional paradigm.
+- **Native JAX Implementation**: Fully leverages JAX's core functionalities, such as **JIT compilation** (`jax.jit`), to achieve high-performance computation on accelerators (GPUs/TPUs).
+
+---
+
+## 📁 Project Structure
 
 ```
 .
-├── model.py  # 完整的 Transformer 模型代码和训练流程
-├── requirements.txt      # Python 依赖列表
-└── README.md             # 项目说明文件
+├── transformer_model.py  # Complete Transformer model code and training flow
+├── requirements.txt      # Python dependencies list
+└── README.md             # Project documentation file
 ```
 
-## 依赖
+---
 
-本项目需要以下 Python 库。你可以使用 `pip` 轻松安装它们：
+## ⚙️ Dependencies
 
-```bash
+This project requires the following Python libraries. You can easily install them using `pip`:
+
+Bash
+
+```
 pip install -r requirements.txt
 ```
 
-文件 `requirements.txt` 内容如下：
+The content of the `requirements.txt` file is as follows:
 
 ```
 jax
@@ -37,21 +47,33 @@ flax
 optax
 ```
 
-## 如何运行
+---
 
-你可以直接运行 `model.py` 文件来查看模型的初始化过程和一个概念性的训练循环。该脚本包含虚拟数据，可以立即运行。
+## ▶️ How to Run
 
-```bash
-python model.py
+You can directly run the `transformer_model.py` file to see the model's initialization process and a conceptual training loop. The script includes dummy data and is immediately runnable.
+
+Bash
+
+```
+python transformer_model.py
 ```
 
-执行该脚本后，你将看到模型初始化、虚拟数据训练的日志，以及一个简单的推理示例。
+Upon execution, you will see logs detailing model initialization, the dummy data training steps, and a simple inference example.
 
-## 文件详情
+---
 
-### `model.py`
+## 📝 File Details
 
-这个文件包含了所有核心代码，从基础的模块定义到完整的 `Transformer` 类。它还展示了：
+### `transformer_model.py`
 
-- **掩码生成**：如何为编码器和解码器创建填充掩码和因果掩码。
-- **训练步骤**：如何使用 `jax.value_and_grad` 计算梯度，并通过 **Optax** 更新模型参数。
+This file contains all the core code, from the basic module definitions to the full **`Transformer`** class. It also demonstrates:
+
+- **Masking Generation**: How to create **padding masks** and **causal masks** for the encoder and decoder.
+- **Training Step**: How to use **`jax.value_and_grad`** to compute gradients and update model parameters via **Optax**.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
