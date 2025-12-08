@@ -2,77 +2,63 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project is a **from-scratch implementation of the Transformer model** using the **JAX** and **Flax** libraries. It is designed to provide a clear, complete code skeleton for understanding and building the **Sequence-to-Sequence (Seq2Seq)** Transformer architecture, typically used for tasks like machine translation.
+A clean, modular implementation of the **Sequence-to-Sequence Transformer** architecture using **JAX** and **Flax**. This project demonstrates best practices for structuring JAX projects, including functional state management, pure function masking, and hardware-accelerated training loops.
 
-The implementation includes the full **Encoder-Decoder structure** and all core components, such as **Multi-Head Attention**, **Positional Encoding**, and the **Feed-Forward Network**.
+## ✨ Features
 
----
-
-## ✨ Key Features
-
-- **Complete Transformer Architecture**: Includes both an **Encoder** and a **Decoder**, suitable for Sequence-to-Sequence tasks.
-- **Modular Design**: All core components (`MultiHeadAttention`, `EncoderBlock`, `DecoderBlock`, etc.) are encapsulated as independent **Flax `nn.Module`s**, making the code easy to understand and extend.
-- **Training Loop Skeleton**: Contains an example training loop using the **Optax** optimizer and **`flax.training.TrainState`**, demonstrating state management within JAX's functional paradigm.
-- **Native JAX Implementation**: Fully leverages JAX's core functionalities, such as **JIT compilation** (`jax.jit`), to achieve high-performance computation on accelerators (GPUs/TPUs).
-
----
+- **Full Architecture**: Complete Encoder-Decoder implementation with Multi-Head Attention and Positional Encoding.
+- **Modular Design**: Code is split into logical modules (`model`, `train`, `data`) for readability and reusability.
+- **JAX Best Practices**:
+  - Uses `optax` for optimization.
+  - Implements `flax.training.TrainState` for state management.
+  - Fully JIT-compiled (`@jax.jit`) training steps and loss functions.
+- **Zero-Dependency Logic**: Core masking and loss functions are implemented as pure functions in `utils.py`.
 
 ## 📁 Project Structure
 
-```
+```text
 .
-├── transformer_model.py  # Complete Transformer model code and training flow
-├── requirements.txt      # Python dependencies list
-└── README.md             # Project documentation file
+├── main.py               # Entry point used to run training and inference
+├── requirements.txt      # Dependencies
+└── src/
+    ├── config.py         # Hyperparameters and model configuration
+    ├── model.py          # Core Transformer definitions (nn.Module)
+    ├── train.py          # Training state, step function, and optimizer setup
+    ├── data.py           # Synthetic data generation (easy to replace with real loaders)
+    └── utils.py          # Utility functions (Mask generation, Loss calculation)
 ```
 
----
+## 🚀 Getting Started
 
-## ⚙️ Dependencies
+### 1. Installation
 
-This project requires the following Python libraries. You can easily install them using `pip`:
+Ensure you have Python 3.8+ installed.
 
-Bash
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
-The content of the `requirements.txt` file is as follows:
+### 2. Run Training
 
-```
-jax
-jaxlib
-flax
-optax
-```
+Execute the main script to initialize the model and start a training session with synthetic data:
 
----
-
-## ▶️ How to Run
-
-You can directly run the `transformer_model.py` file to see the model's initialization process and a conceptual training loop. The script includes dummy data and is immediately runnable.
-
-Bash
-
-```
-python transformer_model.py
+```bash
+python main.py
 ```
 
-Upon execution, you will see logs detailing model initialization, the dummy data training steps, and a simple inference example.
+You will see logs detailing the initialization, training loss per epoch, and a one-shot inference demonstration at the end.
 
----
+## 🛠 Configuration
 
-## 📝 File Details
+You can adjust model hyperparameters (layers, embedding dimensions, heads) and training settings directly in **src/config.py**:
 
-### `transformer_model.py`
-
-This file contains all the core code, from the basic module definitions to the full **`Transformer`** class. It also demonstrates:
-
-- **Masking Generation**: How to create **padding masks** and **causal masks** for the encoder and decoder.
-- **Training Step**: How to use **`jax.value_and_grad`** to compute gradients and update model parameters via **Optax**.
-
----
+```python
+MODEL_CONFIG = {
+    'num_layers': 6,
+    'embed_dim': 512,
+    # ...
+}
+```
 
 ## 📜 License
 
